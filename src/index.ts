@@ -57,8 +57,9 @@ program
 
       res.on("end", () => {
         if (res.statusCode === 200) {
+        const responseBody = JSON.parse(data);
           console.log(
-            `Created vehicle \`${options.shortcode}\``
+            `Created vehicle \`${responseBody.vehicle.shortcode}\`, with ID \`${responseBody.vehicle.id}\``
           );
         } else {
           console.error(
