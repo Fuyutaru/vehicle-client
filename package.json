@@ -7,8 +7,7 @@
     "test": "jest",
     "build": "rm -rf ./dist && tsc",
     "lint": "npx eslint ./src/ --fix",
-    "link": "npm run build && npm link",
-    "dev": "ts-node src/index.ts",
+    "start": "npm run build && npm link",
     "postbuild": "chmod +x dist/index.js"
   },
   "author": "Vanessa Pech & Zijian Liu",
