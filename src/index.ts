@@ -2,6 +2,7 @@
 
 import { Command } from "commander";
 import { createVehicleCommand } from "./controller/createVehicule";
+import { listVehicleCommand } from "./controller/listVehicule";
 
 const program = new Command();
 
@@ -15,6 +16,6 @@ program
 program.option("--address <url>", "Adresse du serveur à interroger");
 
 createVehicleCommand(program);
-
+listVehicleCommand(program);
 
 program.parse(process.argv);
