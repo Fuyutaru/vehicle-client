@@ -8,6 +8,18 @@ interface CreateVehicleOptions {
   latitude: number;
 }
 
+interface VehicleResponse {
+  vehicle: {
+    id: number;
+    shortcode: string;
+    battery: number;
+    position: {
+      longitude: number;
+      latitude: number;
+    };
+  };
+}
+
 interface ServerError extends Error {
   statusCode?: number;
 }
@@ -52,12 +64,12 @@ export function createVehicleCommand(program: Command) {
       };
 
       try {
-        const response = await sendHttpRequest(
+        const response = await sendHttpRequest<VehicleResponse>(
           host,
           parseInt(port || "80", 10),
           "/vehicles",
           "POST",
-          vehicleData
+          vehicleData as unknown as Record<string, unknown> // Conversion explicite ici
         );
 
         console.log(

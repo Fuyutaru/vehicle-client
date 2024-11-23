@@ -1,12 +1,12 @@
 import { request } from "http";
 
-export function sendHttpRequest(
+export function sendHttpRequest<T>(
   hostname: string,
   port: number,
   path: string,
   method: string,
-  body?: any
-): Promise<any> {
+  body?: Record<string, unknown>
+): Promise<T> {
   return new Promise((resolve, reject) => {
     const data = body ? JSON.stringify(body) : "";
 
@@ -31,7 +31,7 @@ export function sendHttpRequest(
       res.on("end", () => {
         if (res.statusCode && res.statusCode >= 200 && res.statusCode < 300) {
           try {
-            resolve(JSON.parse(responseData));
+            resolve(JSON.parse(responseData) as T);
           } catch {
             reject(new Error("Impossible de parser la réponse JSON"));
           }
