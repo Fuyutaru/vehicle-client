@@ -11,7 +11,7 @@ export function listVehicleCommand(program: Command) {
   program
     .command("list-vehicle")
     .description("Lister les vehicules de la base de données")
-    .action(async (options: Record<string, string>) => {
+    .action(async () => {
     const { address } = program.opts();
 
     if (!address) {
@@ -19,7 +19,7 @@ export function listVehicleCommand(program: Command) {
     process.exit(1);
     }
 
-    const req : string = `http://${address}/vehicles`;
+    const req  = `http://${address}/vehicles`;
 
     try {
         const promise = await fetch(req);
