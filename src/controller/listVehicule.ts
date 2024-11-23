@@ -26,17 +26,23 @@ export function listVehicleCommand(program: Command) {
         if (!promise.ok) {
             throw new Error(`HTTP error! status: ${promise.status}`);
         }
-        const result = await promise.json();
-        console.log('-------------------------------');
-        console.log("Voici la liste des vehicles \n");
+        const result : {vehicles: Vehicle[]} = await promise.json();
 
-        result.vehicles.forEach((vehicle: Vehicle) => {
+        if (result.vehicles.length === 0){
             console.log('-------------------------------');
-            console.log(`Vehicle id: ${vehicle.id}`);
-            console.log(`Shortcode: ${vehicle.shortcode}`);
-            console.log(`Battery: ${vehicle.battery}`);
-            console.log(`Position: Latitude ${vehicle.position.latitude}, Longitude ${vehicle.position.longitude}`);
-        })
+            console.log("Ah, il n'y a pas de vehicules...")
+        }
+        else {
+            console.log('-------------------------------');
+            console.log("Voici la liste des vehicules");
+            result.vehicles.forEach((vehicle: Vehicle) => {
+                console.log('-------------------------------');
+                console.log(`Vehicle id: ${vehicle.id}`);
+                console.log(`Shortcode: ${vehicle.shortcode}`);
+                console.log(`Battery: ${vehicle.battery}`);
+                console.log(`Position: Latitude ${vehicle.position.latitude}, Longitude ${vehicle.position.longitude}`);
+            })
+        }
     } catch (error) { console.error('Erreur:', error); }
 
     });
