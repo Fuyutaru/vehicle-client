@@ -19,5 +19,5 @@ vehicle-cli --address=localhost:8080 create-vehicle --shortcode=abcd --battery=1
 ### ✨ Lister les vehicules
 
 ```bash
-vehicle-cli --address=localhost:8080  list-vehicles
+vehicle-cli --address=localhost:8080  list-vehicle
 ```
