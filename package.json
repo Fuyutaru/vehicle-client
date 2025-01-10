@@ -6,7 +6,9 @@
   "scripts": {
     "test": "jest",
     "build": "rm -rf ./dist && tsc",
-    "lint": "npx eslint ./src/ --fix"
+    "lint": "npx eslint ./src/ --fix",
+    "start": "npm run build && npm link",
+    "postbuild": "chmod +x dist/index.js"
   },
   "author": "Vanessa Pech & Zijian Liu",
   "license": "ISC",
@@ -27,5 +29,8 @@
     "commander": "^12.1.0",
     "express": "^5.0.1",
     "pg": "^8.13.1"
+  },
+  "bin": {
+    "vehicle-cli": "./dist/index.js"
   }
 }
